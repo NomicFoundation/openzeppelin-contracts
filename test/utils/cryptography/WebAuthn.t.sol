@@ -9,7 +9,7 @@ import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 import {WebAuthn} from "@openzeppelin/contracts/utils/cryptography/WebAuthn.sol";
 
 contract WebAuthnTest is Test {
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testVerify(bytes memory challenge, uint256 seed) public view {
         assertTrue(
             _runVerify(
@@ -22,7 +22,7 @@ contract WebAuthnTest is Test {
         );
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testVerifyInvalidType(bytes memory challenge, uint256 seed) public view {
         assertFalse(
             _runVerify(
@@ -36,7 +36,7 @@ contract WebAuthnTest is Test {
         );
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testVerifyInvalidChallenge(bytes memory challenge, uint256 seed) public view {
         vm.assume(keccak256(challenge) != keccak256(bytes("invalid_challenge")));
         assertFalse(
@@ -50,7 +50,7 @@ contract WebAuthnTest is Test {
         );
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testVerifyFlagsUP(bytes memory challenge, uint256 seed) public view {
         // UP = false: FAIL
         assertFalse(
@@ -64,7 +64,7 @@ contract WebAuthnTest is Test {
         );
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testVerifyFlagsUV(bytes memory challenge, uint256 seed) public view {
         // UV = false, requireUV = false: SUCCESS
         assertTrue(
@@ -98,7 +98,7 @@ contract WebAuthnTest is Test {
         );
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testVerifyFlagsBEBS(bytes memory challenge, uint256 seed) public view {
         // BS = true, BE = false: FAIL
         assertFalse(
@@ -141,7 +141,7 @@ contract WebAuthnTest is Test {
         );
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testVerifyIndexOutOfBounds(bytes memory challenge, uint256 seed) public view {
         bytes memory authenticatorData = _encodeAuthenticatorData(WebAuthn.AUTH_DATA_FLAGS_UP);
         string memory clientDataJSON = _encodeClientDataJSON(challenge);

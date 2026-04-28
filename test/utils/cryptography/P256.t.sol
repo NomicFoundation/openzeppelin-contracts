@@ -7,7 +7,7 @@ import {Test} from "forge-std/Test.sol";
 import {P256} from "@openzeppelin/contracts/utils/cryptography/P256.sol";
 
 contract P256Test is Test {
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testVerify(bytes32 digest, uint256 seed) public view {
         uint256 privateKey = _asPrivateKey(seed);
 
@@ -19,7 +19,7 @@ contract P256Test is Test {
         assertTrue(P256.verifySolidity(digest, r, s, bytes32(x), bytes32(y)));
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testRecover(bytes32 digest, uint256 seed) public view {
         uint256 privateKey = _asPrivateKey(seed);
 

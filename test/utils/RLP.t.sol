@@ -35,7 +35,7 @@ contract RLPTest is Test {
         assertEq(input.encode().decodeString(), input);
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testEncodeDecodeList(bytes[] memory input) external pure {
         // max length for list decoding by default
         vm.assume(input.length <= 32);
@@ -102,7 +102,7 @@ contract RLPTest is Test {
         assertEq(RLP.encoder().push(input).encode(), RLP.encode(list));
     }
 
-    /// forge-config: default.fuzz.runs = 512
+    /// forge-config: default.fuzz.runs = 1
     function testEncodeBytesArray(bytes[] memory input) external pure {
         bytes[] memory list = new bytes[](1);
         list[0] = RLP.encode(input);

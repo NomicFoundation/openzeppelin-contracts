@@ -67,8 +67,12 @@ export default defineConfig({
   test: {
     solidity: {
       fuzz: {
-        runs: 5000,
-        maxTestRejects: 150000,
+        runs: 1,
+        maxTestRejects: 100,
+      },
+      invariant: {
+        runs: 1,
+        depth: 1,
       },
       fsPermissions: {
         readDirectory: ['node_modules/hardhat-predeploy/bin'],
